@@ -1,5 +1,6 @@
 import { Menu, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const [isClicked, setIsClicked] = useState(false);
@@ -12,23 +13,25 @@ function NavBar() {
       id="nav-bar"
       className="flex justify-between p-5 sm:pr-10  border-b-2  "
     >
-      <div>TrendiQ</div>
+      <Link to="/">TrendiQ</Link>
       <ul
         className={`sm:flex  gap-9  sm:flex-row sm:static flex-col absolute top-20 left-0 sm:bg-inherit sm:w-max w-full sm:p-0 p-4 sm:h-max h-[calc(100svh-80px)] ${
           !isClicked && "hidden"
-        } `}
+        }`}
       >
         <li className="sm:border-none border-b-2  sm:pb-0 pb-1 sm:pt-0 pt-5">
-          <a href="">Home</a>
+          <Link to="/home">Home</Link>
         </li>
         <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
-          <a href="">Page</a>
+          <Link to="/shop" href="/shop">
+            Shop
+          </Link>
         </li>
         <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
-          <a href="">About Us</a>
+          <Link to="/about">About Us</Link>
         </li>
         <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
-          <a href="">Contact Us</a>
+          <Link to="/contact">Contact Us</Link>
         </li>
       </ul>
       <div className="flex gap-8">
