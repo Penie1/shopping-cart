@@ -1,7 +1,11 @@
-function HomePage() {
+import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+
+function Home() {
   return (
-    <>
-      <div
+    <header>
+      <NavBar />
+      <section
         style={{ backgroundImage: "url(/src/assets/hero-image.jpg)" }}
         className="bg-cover  bg-center sm:bg-top flex items-center"
       >
@@ -15,13 +19,15 @@ function HomePage() {
             Labore ullam maxime asperiores magnam, pariatur harum accusantium
             quos debitis, beatae consectetur blanditiis sit.
           </p>
-          <button className="bg-rose-700 text-neutral-100 py-2 px-4 rounded-md ">
-            SHOP NOW
-          </button>
+          <Link to="/shop">
+            <button className="bg-rose-700 text-neutral-100 py-2 px-4 rounded-md">
+              SHOP NOW
+            </button>
+          </Link>
         </div>
-      </div>
-    </>
+      </section>
+    </header>
   );
 }
 
-export default HomePage;
+export default Home;
