@@ -1,4 +1,4 @@
-import { Menu, ShoppingCart } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 
 function NavBar() {
@@ -14,24 +14,24 @@ function NavBar() {
     >
       <div>TrendiQ</div>
       <ul
-        className={`sm:flex  gap-9  sm:flex-row sm:static flex-col absolute top-20 left-0 sm:bg-inherit sm:w-max w-full sm:p-0 p-4 sm:h-max h-[calc(100svh-80px)] ${
-          !isClicked && "hidden"
+        className={`z-10 flex sm:gap-9 gap-3  sm:flex-row sm:static flex-col absolute top-[4.1rem] right-0 sm:bg-inherit bg-slate-700 sm:text-inherit text-neutral-100 sm:w-max w-60 sm:p-0 pt-4 px-3  sm:h-max h-[calc(100svh-66px)] ${
+          !isClicked && "sm:flex hidden "
         } `}
       >
-        <li className="sm:border-none border-b-2  sm:pb-0 pb-1 sm:pt-0 pt-5">
+        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
           <a href="">Home</a>
         </li>
-        <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
+        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
           <a href="">Page</a>
         </li>
-        <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
+        <li className="border-b-2 py-1 border-rose-500 sm:border-none  ">
           <a href="">About Us</a>
         </li>
-        <li className="sm:border-none border-b-2 sm:pb-0 pb-1  ">
+        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
           <a href="">Contact Us</a>
         </li>
       </ul>
-      <div className="flex gap-8">
+      <div className="flex gap-10">
         <button className=" relative">
           <ShoppingCart size={20} />
           <div className=" text-center font-bold absolute bottom-3 left-5 w-5 h-5 pb-1  rounded-full bg-rose-500 text-neutral-50 text-xs leading-5">
@@ -39,7 +39,7 @@ function NavBar() {
           </div>
         </button>
         <button className="sm:hidden" onClick={handleOnClick}>
-          <Menu />
+          {!isClicked ? <Menu /> : <X />}
         </button>
       </div>
     </nav>
