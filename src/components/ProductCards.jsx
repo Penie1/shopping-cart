@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 function ProductCards({ image, title, price }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -26,5 +27,11 @@ function ProductCards({ image, title, price }) {
     </div>
   );
 }
+
+ProductCards.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
 
 export default ProductCards;
