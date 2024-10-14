@@ -6,6 +6,11 @@ function Shop() {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [numberOfItems, setNumberOfItems] = useState(0);
+
+  function addItemsToCart() {
+    setNumberOfItems((prev) => prev + 1);
+  }
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -22,13 +27,19 @@ function Shop() {
 
   return (
     <>
-      <NavBar />
+      <NavBar numberOfItems={numberOfItems} />
       <Categories
         setProducts={setProducts}
         setError={setError}
         setLoading={setLoading}
       />
-      <Products products={products} error={error} loading={loading} />
+      <Products
+        addItemsToCart={addItemsToCart}
+        numberOfItems={numberOfItems}
+        products={products}
+        error={error}
+        loading={loading}
+      />
     </>
   );
 }

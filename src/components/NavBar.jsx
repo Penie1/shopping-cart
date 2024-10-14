@@ -1,8 +1,9 @@
 import { Menu, ShoppingCart, X } from "lucide-react";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ numberOfItems }) {
   const [isClicked, setIsClicked] = useState(false);
 
   function handleOnClick() {
@@ -36,7 +37,7 @@ function NavBar() {
         <button className=" relative">
           <ShoppingCart size={20} />
           <div className=" text-center font-bold absolute bottom-3 left-5 w-5 h-5 pb-1  rounded-full bg-rose-500 text-neutral-50 text-xs leading-5">
-            0
+            {numberOfItems}
           </div>
         </button>
         <button className="sm:hidden" onClick={handleOnClick}>
@@ -46,5 +47,7 @@ function NavBar() {
     </nav>
   );
 }
-
+NavBar.propTypes = {
+  numberOfItems: PropTypes.number
+};
 export default NavBar;
