@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function NavBar({ cartItemCount }) {
+function NavBar({ cartItems }) {
   const [isClicked, setIsClicked] = useState(false);
-
+  const cartItemCount = cartItems.length;
   function handleOnClick() {
     setIsClicked((prevBoolen) => !prevBoolen);
   }
@@ -48,6 +48,6 @@ function NavBar({ cartItemCount }) {
   );
 }
 NavBar.propTypes = {
-  cartItemCount: PropTypes.number,
+  cartItems: PropTypes.array,
 };
 export default NavBar;

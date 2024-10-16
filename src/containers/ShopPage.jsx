@@ -7,7 +7,6 @@ function Shop() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
-  const cartItemCount = cartItems.length;
 
   function addItemsToCart(id) {
     const zeroBasedId = id - 1; // It convert original ID to zero-based for array indexing
@@ -32,7 +31,7 @@ function Shop() {
 
   return (
     <>
-      <NavBar cartItemCount={cartItemCount} />
+      <NavBar cartItems={cartItems} />
       <Categories
         setProducts={setProducts}
         setError={setError}
@@ -40,7 +39,6 @@ function Shop() {
       />
       <Products
         addItemsToCart={addItemsToCart}
-        numberOfItems={cartItemCount}
         products={products}
         error={error}
         loading={loading}
