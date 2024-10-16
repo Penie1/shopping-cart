@@ -6,10 +6,15 @@ function Shop() {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [numberOfItems, setNumberOfItems] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
+  const cartItemCount = cartItems.length;
 
-  function addItemsToCart() {
-    setNumberOfItems((prev) => prev + 1);
+  function addItemsToCart(id) {
+    const zeroBasedId = id - 1; // It convert original ID to zero-based for array indexing
+    const isItemInCart = cartItems.includes(products[zeroBasedId]);
+    if (!isItemInCart) {
+      setCartItems((prevItem) => [products[zeroBasedId], ...prevItem]);
+    }
   }
 
   useEffect(() => {
@@ -27,7 +32,7 @@ function Shop() {
 
   return (
     <>
-      <NavBar numberOfItems={numberOfItems} />
+      <NavBar cartItemCount={cartItemCount} />
       <Categories
         setProducts={setProducts}
         setError={setError}
@@ -35,7 +40,7 @@ function Shop() {
       />
       <Products
         addItemsToCart={addItemsToCart}
-        numberOfItems={numberOfItems}
+        numberOfItems={cartItemCount}
         products={products}
         error={error}
         loading={loading}

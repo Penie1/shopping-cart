@@ -10,6 +10,7 @@ function Products({ loading, error, products, addItemsToCart }) {
       {products.map(({ id, image, title, price }) => (
         <ProductCards
           key={id}
+          id={id}
           image={image}
           title={title}
           price={price}

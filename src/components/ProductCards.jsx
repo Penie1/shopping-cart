@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function ProductCards({ image, title, price, addItemsToCart }) {
+function ProductCards({ id, image, title, price, addItemsToCart }) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -18,7 +18,7 @@ function ProductCards({ image, title, price, addItemsToCart }) {
       <span className="text-neutral-800">{price} $</span>
 
       <button
-        onClick={addItemsToCart}
+        onClick={() => addItemsToCart(id)}
         className={` ${
           isHovered ? "opacity-100" : "opacity-0"
         } bg-rose-500 px-3 py-1 rounded-md text-neutral-50 `}
@@ -30,6 +30,7 @@ function ProductCards({ image, title, price, addItemsToCart }) {
 }
 
 ProductCards.propTypes = {
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

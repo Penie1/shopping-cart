@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function NavBar({ numberOfItems }) {
+function NavBar({ cartItemCount }) {
   const [isClicked, setIsClicked] = useState(false);
 
   function handleOnClick() {
@@ -37,7 +37,7 @@ function NavBar({ numberOfItems }) {
         <button className=" relative">
           <ShoppingCart size={20} />
           <div className=" text-center font-bold absolute bottom-3 left-5 w-5 h-5 pb-1  rounded-full bg-rose-500 text-neutral-50 text-xs leading-5">
-            {numberOfItems}
+            {cartItemCount}
           </div>
         </button>
         <button className="sm:hidden" onClick={handleOnClick}>
@@ -48,6 +48,6 @@ function NavBar({ numberOfItems }) {
   );
 }
 NavBar.propTypes = {
-  numberOfItems: PropTypes.number
+  cartItemCount: PropTypes.number,
 };
 export default NavBar;
