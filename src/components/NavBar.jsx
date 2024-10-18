@@ -2,12 +2,17 @@ import { Menu, ShoppingCart, X } from "lucide-react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 function NavBar({ cartItems }) {
   const [isClicked, setIsClicked] = useState(false);
-  const cartItemCount = cartItems.length;
-  function handleOnClick() {
+  const [isCartClicked, setIsCartClicked] = useState(false);
+
+  function handleMenuClick() {
     setIsClicked((prevBoolen) => !prevBoolen);
+  }
+  function handleCartClick() {
+    setIsCartClicked((prevBoolen) => !prevBoolen);
   }
   return (
     <nav
@@ -33,17 +38,22 @@ function NavBar({ cartItems }) {
           <Link to="/contact">Contact Us</Link>
         </li>
       </ul>
-      <div className="flex gap-10">
-        <button className=" relative">
+      <div className="flex gap-10 relative">
+        <button onClick={handleCartClick}>
           <ShoppingCart size={20} />
           <div className=" text-center font-bold absolute bottom-3 left-5 w-5 h-5 pb-1  rounded-full bg-rose-500 text-neutral-50 text-xs leading-5">
-            {cartItemCount}
+            {cartItems.length}
           </div>
         </button>
-        <button className="sm:hidden" onClick={handleOnClick}>
+        <button className="sm:hidden" onClick={handleMenuClick}>
           {!isClicked ? <Menu /> : <X />}
         </button>
       </div>
+      <Cart
+        isCartClicked={isCartClicked}
+        cartItems={cartItems}
+        handleCartClick={handleCartClick}
+      />
     </nav>
   );
 }
