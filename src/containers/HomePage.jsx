@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 function Home() {
   return (
     <header>
-      <NavBar />
       <section
         style={{ backgroundImage: "url(/src/assets/hero-image.jpg)" }}
         className="bg-cover  bg-center sm:bg-top flex items-center"
