@@ -1,23 +1,18 @@
 import PropTypes from "prop-types";
 import CategoriesBtn from "./CategoriesBtn";
 
-function Categories({ setProducts, setError, setLoading }) {
-  function fetchOnClick(catagory) {
-    fetch(
-      `https://fakestoreapi.com/products/${
-        catagory !== "all" ? `category/${catagory}` : ""
-      }`
-    )
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("server error");
-        }
-        return response.json();
-      })
-      .then((response) => setProducts(response))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+function Categories({ products, setFilteredProducts }) {
+  function fetchOnClick(category) {
+    if (category === "all") {
+      setFilteredProducts([...products]); // Reset to all products
+    } else {
+      const filteredCategoryProducts = products.filter(
+        (product) => product.category === category
+      );
+      setFilteredProducts([...filteredCategoryProducts]);
+    }
   }
+
   return (
     <nav className="flex justify-evenly my-8">
       <CategoriesBtn type="All" fetchOnClick={fetchOnClick} category={"all"} />
@@ -46,9 +41,8 @@ function Categories({ setProducts, setError, setLoading }) {
 }
 
 Categories.propTypes = {
-  setProducts: PropTypes.func.isRequired,
-  setError: PropTypes.func.isRequired,
-  setLoading: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
+  setFilteredProducts: PropTypes.func.isRequired,
 };
 
 export default Categories;

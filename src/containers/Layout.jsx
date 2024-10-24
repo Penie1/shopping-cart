@@ -3,17 +3,18 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
 function Layout() {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
 
   function addItemsToCart(id) {
-    const zeroBasedId = id - 1; // It convert original ID to zero-based for array indexing
-    const isItemInCart = cartItems.includes(products[zeroBasedId]);
-    if (!isItemInCart) {
-      setCartItems((prevItem) => [products[zeroBasedId], ...prevItem]);
-    }
+    const product = products.find((item) => item.id === id);
+    const isItemInCart = cartItems.includes(product);
+
+    if (isItemInCart || !product) return; // Prevent adding undefined or duplicate items
+
+    setCartItems((prevItems) => [product, ...prevItems]);
   }
 
   useEffect(() => {
@@ -31,17 +32,7 @@ function Layout() {
   return (
     <main>
       <NavBar cartItems={cartItems} />
-      <Outlet
-        context={[
-          products,
-          setProducts,
-          loading,
-          setLoading,
-          error,
-          setError,
-          addItemsToCart,
-        ]}
-      />
+      <Outlet context={[products, loading, error, addItemsToCart]} />
     </main>
   );
 }

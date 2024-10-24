@@ -1,27 +1,24 @@
 import { useOutletContext } from "react-router-dom";
 import Categories from "../components/Categories";
 import Products from "../hooks/Products";
+import { useEffect, useState } from "react";
 function Shop() {
-  const [
-    products,
-    setProducts,
-    loading,
-    setLoading,
-    error,
-    setError,
-    addItemsToCart,
-  ] = useOutletContext();
+  const [products, loading, error, addItemsToCart] = useOutletContext();
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]); // Make sure filteredProducts is reset whenever products change
 
   return (
     <>
       <Categories
-        setProducts={setProducts}
-        setError={setError}
-        setLoading={setLoading}
+        products={products}
+        setFilteredProducts={setFilteredProducts}
       />
       <Products
         addItemsToCart={addItemsToCart}
-        products={products}
+        products={filteredProducts}
         error={error}
         loading={loading}
       />
