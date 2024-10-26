@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        playfairDisplay: ['"Playfair Display"', "serif"],
+        poopins: ["Poppins", "san-serif"],
       },
     },
   },
