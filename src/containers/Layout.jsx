@@ -30,7 +30,7 @@ function Layout() {
       .finally(() => setLoading(false));
   }, []);
   return (
-    <main>
+    <main className="font-poopins text-neutral-800">
       <NavBar cartItems={cartItems} />
       <Outlet context={[products, loading, error, addItemsToCart]} />
     </main>

@@ -1,29 +1,24 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
+import { ShoppingCartIcon } from "lucide-react";
+import shortProductName from "../utilities/shortProductName";
 
 function ProductCards({ id, image, title, price, addItemsToCart }) {
-  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div
-      className="border-2 relative border-neutral-300 flex flex-col gap-4 justify-center items-center py-10  px-6 "
-      onMouseEnter={() => {
-        setIsHovered((prev) => !prev);
-      }}
-      onMouseLeave={() => {
-        setIsHovered((prev) => !prev);
-      }}
-    >
-      <img src={image} alt={title} className="w-32 h-32" />
-      <h4 className="text-sm text-neutral-700 text-center">{title}</h4>
-      <span className="text-neutral-800">{price} $</span>
+    <div className="bg-white border relative border-neutral-200 rounded-md flex flex-col gap-6 justify-center items-center py-10  px-6 tracking-wider">
+      <img src={image} alt={title} className=" w-auto h-44" />
+      <h4 className="text-sm text-neutral-700 text-center font-medium">
+        {shortProductName(title)}
+      </h4>
+      <span className="text-neutral-800 font-semibold">{price} $</span>
 
       <button
         onClick={() => addItemsToCart(id)}
-        className={` ${
-          isHovered ? "opacity-100" : "opacity-0"
-        } bg-rose-500 px-3 py-1 rounded-md text-neutral-50 `}
+        className="flex gap-2 items-end bg-neutral-600 hover:bg-neutral-800 transition rounded-md text-yellow-500 px-3 py-2"
       >
-        Add to cart
+        <span>
+          <ShoppingCartIcon size={18} />
+        </span>
+        <span className="text-xs font-semibold">ADD TO CART</span>
       </button>
     </div>
   );

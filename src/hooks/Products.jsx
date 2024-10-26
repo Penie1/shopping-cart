@@ -2,11 +2,21 @@ import PropTypes from "prop-types";
 import ProductCards from "../components/ProductCards";
 
 function Products({ loading, error, products, addItemsToCart }) {
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center">
+        <p className="font-bold text-3xl">Loading...</p>
+      </div>
+    );
 
-  if (error) return <p>Something went wrong!</p>;
+  if (error)
+    return (
+      <div className="flex justify-center">
+        <p className="font-bold text-3xl">Something went wrong!</p>
+      </div>
+    );
   return (
-    <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 p-6 bg-neutral-200 w-full">
       {products.map(({ id, image, title, price }) => (
         <ProductCards
           key={id}

@@ -14,25 +14,25 @@ function Categories({ products, setFilteredProducts }) {
   }
 
   return (
-    <nav className="flex justify-evenly my-8">
-      <CategoriesBtn type="All" fetchOnClick={fetchOnClick} category={"all"} />
+    <nav className="flex sm:gap-0 gap-12 sm:justify-evenly sm:mt-8 bg-neutral-800 sm:p-2 sm:flex-row flex-col   sm:h-auto h-svh sm:w-full sm:text-sm  text-xs sm:static sticky top-[78px] pt-12 shadow-md shadow-yellow-500  w-min px-1">
+      <CategoriesBtn type="ALL" fetchOnClick={fetchOnClick} category={"all"} />
       <CategoriesBtn
-        type="Men's clothing"
+        type="MEN"
         category={`men's clothing`}
         fetchOnClick={fetchOnClick}
       />
       <CategoriesBtn
-        type="Women's clothing"
+        type="WOMEN"
         category={"women's clothing"}
         fetchOnClick={fetchOnClick}
       />
       <CategoriesBtn
-        type="Jewelery"
+        type="JEWELERY"
         category={"jewelery"}
         fetchOnClick={fetchOnClick}
       />
       <CategoriesBtn
-        type="Electronics"
+        type="ELECTRONICS"
         category={"electronics"}
         fetchOnClick={fetchOnClick}
       />

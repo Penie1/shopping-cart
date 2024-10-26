@@ -1,12 +1,13 @@
 import { X } from "lucide-react";
 import PropTypes from "prop-types";
+import shortProductName from "../utilities/shortProductName";
 
 function Cart({ isCartClicked, cartItems, handleCartClick }) {
   const cartItemCount = cartItems.length;
   return (
     <>
       {isCartClicked && (
-        <section className="flex flex-col justify-between z-30 fixed top-0 right-0 w-[50vw] h-dvh border-2 bg-slate-50  ">
+        <section className="flex flex-col justify-between z-30 fixed top-0 right-0 left-0 w-100vw h-dvh border-2 bg-slate-50  ">
           <div className="flex justify-between border-b border-neutral-300 py-3 px-4">
             <h3 className="text-lg font-bold">Your Cart ({cartItemCount})</h3>
             <button aria-label="Close cart popup" onClick={handleCartClick}>
@@ -31,7 +32,7 @@ function Cart({ isCartClicked, cartItems, handleCartClick }) {
                         src={image}
                         alt={title}
                       />
-                      <h4 className="font-medium">{title}</h4>
+                      <h4 className="font-medium">{shortProductName(title)}</h4>
                       <button className="flex gap-1 items-center text-xs">
                         <X className="h-4" />
                         <span>Remove</span>
@@ -50,7 +51,7 @@ function Cart({ isCartClicked, cartItems, handleCartClick }) {
               </p>
 
               <div className="flex flex-col basis-full gap-2 mb-2">
-                <a className="py-4 border  cursor-pointer bg-red-400 text-neutral-50 ">
+                <a className="py-4 border  cursor-pointer bg-neutral-800 text-yellow-400 ">
                   View Cart
                 </a>
                 <a className="py-4 border cursor-pointer border-neutral-600">
