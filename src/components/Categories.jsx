@@ -14,7 +14,7 @@ function Categories({ products, setFilteredProducts }) {
   }
 
   return (
-    <nav className="flex sm:gap-0 gap-12 sm:justify-evenly sm:mt-8 bg-neutral-800 sm:p-2 sm:flex-row flex-col   sm:h-auto h-svh sm:w-full sm:text-sm  text-xs sm:static sticky top-[78px] pt-12 shadow-md shadow-yellow-500  w-min px-1">
+    <nav className="flex sm:gap-0 gap-12 sm:justify-evenly sm:mt-8 bg-neutral-800 sm:p-2 sm:flex-row flex-col   sm:h-auto h-[calc(100svh-78px)] sm:w-full sm:text-sm  text-xs sm:static sticky top-[78px] pt-12 shadow-md shadow-yellow-500  w-min px-1">
       <CategoriesBtn type="ALL" fetchOnClick={fetchOnClick} category={"all"} />
       <CategoriesBtn
         type="MEN"

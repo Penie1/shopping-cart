@@ -33,7 +33,7 @@ function Cart({ isCartClicked, cartItems, handleCartClick }) {
                         alt={title}
                       />
                       <h4 className="font-medium">{shortProductName(title)}</h4>
-                      <button className="flex gap-1 items-center text-xs">
+                      <button className="flex gap-1 items-center text-xs transition-colors text-neutral-500 hover:text-neutral-800">
                         <X className="h-4" />
                         <span>Remove</span>
                       </button>

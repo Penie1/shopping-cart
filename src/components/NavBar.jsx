@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
+import NavLink from "./NavLink";
 
 function NavBar({ cartItems }) {
   const [isClicked, setIsClicked] = useState(false);
@@ -17,28 +18,36 @@ function NavBar({ cartItems }) {
   return (
     <nav
       id="nav-bar"
-      className="flex justify-between p-5 sm:pr-10  border-b-2 sm:static sticky top-0 z-20 bg-neutral-100"
+      className="flex justify-between items-center p-5 sm:pr-10  border-b-2 sm:static sticky top-0 z-20 bg-neutral-100"
     >
       <Link to="/" className="text-3xl font-bold">
         TrendiQ
       </Link>
       <ul
-        className={`z-10 flex sm:gap-9 gap-3  sm:flex-row sm:static flex-col absolute top-[4.9rem] right-0 sm:bg-inherit bg-slate-700 sm:text-inherit text-neutral-100 sm:w-max w-60 sm:p-0 pt-4 px-3  sm:h-max h-[calc(100svh-66px)] ${
+        className={`z-10 flex  sm:gap-9  sm:flex-row sm:static flex-col absolute top-[4.9rem] right-0 sm:bg-inherit bg-neutral-700 sm:text-inherit text-neutral-100 sm:w-max w-full sm:p-0 px-3  sm:h-fit h-[calc(100svh-78px)] text-center font-medium  uppercase tracking-wider ${
           !isClicked && "sm:flex hidden "
         } `}
       >
-        <li className="border-b-2 py-1 border-rose-500 sm:border-none">
-          <Link to="/home">Home</Link>
-        </li>
-        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
-          <Link to="/shop">Shop</Link>
-        </li>
-        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
-          <Link to="/about">About Us</Link>
-        </li>
-        <li className="border-b-2 py-1 border-rose-500 sm:border-none ">
-          <Link to="/contact">Contact Us</Link>
-        </li>
+        <NavLink
+          link="home"
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+        />
+        <NavLink
+          link="shop"
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+        />
+        <NavLink
+          link="about us"
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+        />
+        <NavLink
+          link="contact us"
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+        />
       </ul>
       <div className="flex gap-10 relative">
         <button onClick={handleCartClick}>

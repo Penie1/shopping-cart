@@ -4,15 +4,15 @@ import ProductCards from "../components/ProductCards";
 function Products({ loading, error, products, addItemsToCart }) {
   if (loading)
     return (
-      <div className="flex justify-center">
+      <div className="flex sm:h-[calc(100svh-190px)] h-[calc(100svh-78px)] justify-center items-center mx-auto">
         <p className="font-bold text-3xl">Loading...</p>
       </div>
     );
 
   if (error)
     return (
-      <div className="flex justify-center">
-        <p className="font-bold text-3xl">Something went wrong!</p>
+      <div className="flex sm:h-[calc(100svh-190px)] h-[calc(100svh-78px)] justify-center items-center mx-auto">
+        <p className="font-bold text-3xl ">Something went wrong!</p>
       </div>
     );
   return (

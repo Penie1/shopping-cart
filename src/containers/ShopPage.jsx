@@ -11,7 +11,7 @@ function Shop() {
   }, [products]); // Make sure filteredProducts is reset whenever products change
 
   return (
-    <section className="flex  sm:flex-col ">
+    <section className="flex flex-row-reverse sm:flex-col">
       <Categories
         products={products}
         setFilteredProducts={setFilteredProducts}
