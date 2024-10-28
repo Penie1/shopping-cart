@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import shortProductName from "../utilities/shortProductName";
 
 function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
+  const cartItemCount = cartItems.length;
+  const subTotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   function removeItemFromCart(id) {
     const remainingCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(remainingCartItems);
   }
-  const cartItemCount = cartItems.length;
+
   return (
     <>
       {isCartClicked && (
@@ -54,7 +56,7 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
             <div className="flex flex-col gap-2 text-center font-medium">
               <p className="flex justify-between py-3 px-5 bg-neutral-100 ">
                 <span>SubTotal:</span>
-                <span>1000$</span>
+                <span>{subTotal}$</span>
               </p>
 
               <div className="flex flex-col basis-full gap-2 mb-2">
