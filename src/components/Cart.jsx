@@ -2,7 +2,11 @@ import { X } from "lucide-react";
 import PropTypes from "prop-types";
 import shortProductName from "../utilities/shortProductName";
 
-function Cart({ isCartClicked, cartItems, handleCartClick }) {
+function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
+  function removeItemFromCart(id) {
+    const remainingCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(remainingCartItems);
+  }
   const cartItemCount = cartItems.length;
   return (
     <>
@@ -33,7 +37,10 @@ function Cart({ isCartClicked, cartItems, handleCartClick }) {
                         alt={title}
                       />
                       <h4 className="font-medium">{shortProductName(title)}</h4>
-                      <button className="flex gap-1 items-center text-xs transition-colors text-neutral-500 hover:text-neutral-800">
+                      <button
+                        onClick={() => removeItemFromCart(id)}
+                        className="flex gap-1 items-center text-xs transition-colors text-neutral-500 hover:text-neutral-800"
+                      >
                         <X className="h-4" />
                         <span>Remove</span>
                       </button>
@@ -66,9 +73,10 @@ function Cart({ isCartClicked, cartItems, handleCartClick }) {
   );
 }
 Cart.propTypes = {
-  isCartClicked: PropTypes.bool,
+  isCartClicked: PropTypes.bool.isRequired,
   cartItems: PropTypes.array,
-  handleCartClick: PropTypes.func,
+  setCartItems: PropTypes.func.isRequired,
+  handleCartClick: PropTypes.func.isRequired,
 };
 
 export default Cart;

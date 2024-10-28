@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import NavLink from "./NavLink";
 
-function NavBar({ cartItems }) {
+function NavBar({ cartItems, setCartItems }) {
   const [isClicked, setIsClicked] = useState(false);
   const [isCartClicked, setIsCartClicked] = useState(false);
 
@@ -15,6 +15,7 @@ function NavBar({ cartItems }) {
   function handleCartClick() {
     setIsCartClicked((prevBoolen) => !prevBoolen);
   }
+
   return (
     <nav
       id="nav-bar"
@@ -64,11 +65,13 @@ function NavBar({ cartItems }) {
         isCartClicked={isCartClicked}
         cartItems={cartItems}
         handleCartClick={handleCartClick}
+        setCartItems={setCartItems}
       />
     </nav>
   );
 }
 NavBar.propTypes = {
   cartItems: PropTypes.array,
+  setCartItems: PropTypes.func.isRequired,
 };
 export default NavBar;
