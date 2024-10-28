@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import Categories from "../components/Categories";
-import Products from "../hooks/Products";
+import Products from "../components/Products";
 import { useEffect, useState } from "react";
 function Shop() {
   const [products, loading, error, addItemsToCart] = useOutletContext();
