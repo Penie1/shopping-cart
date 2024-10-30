@@ -1,10 +1,11 @@
+import heroImage from "../assets/hero-image.jpg";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <header>
       <section
-        style={{ backgroundImage: "url(/src/assets/hero-image.jpg)" }}
+        style={{ backgroundImage: `url(${heroImage})` }}
         className="bg-cover  bg-center sm:bg-top flex items-center"
       >
         <div className="min-h-[calc(100svh-78px)] backdrop-brightness-50 w-full flex flex-col gap-3 justify-center pl-5 items-start">
