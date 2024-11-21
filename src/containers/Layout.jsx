@@ -7,14 +7,23 @@ function Layout() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
+  console.log(cartItems);
 
   function addItemsToCart(id) {
     const product = products.find((item) => item.id === id);
-    const isItemInCart = cartItems.includes(product);
+    if (!product) return;
 
-    if (isItemInCart || !product) return; // Prevent adding undefined or duplicate items
+    setCartItems((prevItems) => {
+      const isItemInCart = prevItems.find((item) => item.id === id);
 
-    setCartItems((prevItems) => [product, ...prevItems]);
+      if (isItemInCart) {
+        return prevItems.map((item) =>
+          item.id === id ? { ...item, total: item.total + 1 } : item
+        );
+      } else {
+        return [...prevItems, { ...product, total: 1 }];
+      }
+    });
   }
 
   useEffect(() => {
