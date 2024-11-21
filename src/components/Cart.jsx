@@ -4,7 +4,11 @@ import shortProductName from "../utilities/shortProductName";
 
 function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
   const cartItemCount = cartItems.length;
-  const subTotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+
+  const subTotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.total,
+    0
+  );
   function removeItemFromCart(id) {
     const remainingCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(remainingCartItems);
