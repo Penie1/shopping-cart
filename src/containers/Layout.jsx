@@ -7,10 +7,10 @@ function Layout() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState([]);
-  console.log(cartItems);
 
   function addItemsToCart(id) {
     const product = products.find((item) => item.id === id);
+
     if (!product) return;
 
     setCartItems((prevItems) => {

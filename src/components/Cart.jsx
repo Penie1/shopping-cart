@@ -13,6 +13,22 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
     const remainingCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(remainingCartItems);
   }
+  function handleIncrement(currentItemId) {
+    setCartItems((prevItems) => {
+      return prevItems.map((item) =>
+        item.id === currentItemId ? { ...item, total: item.total + 1 } : item
+      );
+    });
+  }
+  function handleDecrement(currentItemId) {
+    setCartItems((prevItems) => {
+      return prevItems.map((item) =>
+        item.id === currentItemId && item.total > 1
+          ? { ...item, total: item.total - 1 }
+          : item
+      );
+    });
+  }
 
   return (
     <>
@@ -33,16 +49,35 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
               </h1>
             ) : (
               <ul className="flex flex-col gap-3 py-2 max-h-72 overflow-scroll scrollbar w-full">
-                {cartItems.map(({ id, title, image }) => (
+                {cartItems.map(({ id, title, image, total }) => (
                   <li className="border py-4 px-3 w-full" key={id}>
-                    <div className="flex gap-10 items-center justify-between text-sm">
+                    <div className=" flex gap-10 items-center justify-between text-sm">
                       <img
                         width={"60px"}
                         height={"60px"}
                         src={image}
                         alt={title}
-                      />
-                      <h4 className="font-medium">{shortProductName(title)}</h4>
+                      />{" "}
+                      <div className="flex flex-col items-center gap-2">
+                        <h4 className="font-medium">
+                          {shortProductName(title)}
+                        </h4>
+                        <div className="flex gap-2">
+                          <button
+                            className="border border-neutral-500 px-2 rounded-sm"
+                            onClick={() => handleIncrement(id)}
+                          >
+                            +
+                          </button>
+                          <span>{total}</span>
+                          <button
+                            className="border border-neutral-500 px-2 rounded-sm"
+                            onClick={() => handleDecrement(id)}
+                          >
+                            -
+                          </button>
+                        </div>
+                      </div>
                       <button
                         onClick={() => removeItemFromCart(id)}
                         className="flex gap-1 items-center text-xs transition-colors text-neutral-500 hover:text-neutral-800"
