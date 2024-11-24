@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
-
+const productAPI = "https://fakestoreapi.com/products";
 function Layout() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -27,16 +27,22 @@ function Layout() {
   }
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => {
+    const fetchProduct = async (productAPI) => {
+      try {
+        const response = await fetch(productAPI);
         if (response.status >= 400) {
           throw new Error("server error");
         }
-        return response.json();
-      })
-      .then((response) => setProducts(response))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+        const productResult = await response.json();
+        setProducts(productResult);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct(productAPI);
   }, []);
   return (
     <main className="font-poopins text-neutral-800">
