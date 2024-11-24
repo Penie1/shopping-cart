@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import CategoriesBtn from "./CategoriesBtn";
+import { useOutletContext } from "react-router-dom";
 
-function Categories({ products, setFilteredProducts }) {
+function Categories({ setFilteredProducts }) {
+  const { products } = useOutletContext();
   function fetchOnClick(category) {
     if (category === "all") {
       setFilteredProducts([...products]); // Reset to all products
@@ -41,7 +43,6 @@ function Categories({ products, setFilteredProducts }) {
 }
 
 Categories.propTypes = {
-  products: PropTypes.array.isRequired,
   setFilteredProducts: PropTypes.func.isRequired,
 };
 

@@ -2,7 +2,10 @@ import PropTypes from "prop-types";
 import { ShoppingCartIcon } from "lucide-react";
 import shortProductName from "../utilities/shortProductName";
 
-function ProductCards({ id, image, title, price, addItemsToCart }) {
+import { useOutletContext } from "react-router-dom";
+
+function ProductCards({ id, image, title, price }) {
+  const { addItemsToCart } = useOutletContext();
   return (
     <div className="bg-white border relative border-neutral-200 rounded-md flex flex-col gap-6 justify-center items-center py-10  px-6 tracking-wider">
       <img src={image} alt={title} className=" w-auto h-44" />
@@ -29,7 +32,6 @@ ProductCards.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  addItemsToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCards;

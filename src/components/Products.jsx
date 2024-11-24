@@ -1,8 +1,10 @@
-import PropTypes from "prop-types";
 import ProductCards from "../components/ProductCards";
 import LoadingCard from "./LoadingCard";
+import { useOutletContext } from "react-router-dom";
+import PropTypes from "prop-types";
+function Products({ filteredProducts }) {
+  const { loading, error, addItemsToCart } = useOutletContext();
 
-function Products({ loading, error, products, addItemsToCart }) {
   if (loading)
     return (
       <section className="grid grid-cols-1 grid-rows-[400px] gap-4 md:grid-cols-2 lg:grid-cols-3 p-6 bg-neutral-200 w-full min-h-[calc(100svh-150px)]">
@@ -20,7 +22,7 @@ function Products({ loading, error, products, addItemsToCart }) {
     );
   return (
     <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 p-6 bg-neutral-200 w-full">
-      {products.map(({ id, image, title, price }) => (
+      {filteredProducts.map(({ id, image, title, price }) => (
         <ProductCards
           key={id}
           id={id}
@@ -34,9 +36,6 @@ function Products({ loading, error, products, addItemsToCart }) {
   );
 }
 Products.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.any,
-  products: PropTypes.array,
-  addItemsToCart: PropTypes.func.isRequired,
+  filteredProducts: PropTypes.array.isRequired,
 };
 export default Products;

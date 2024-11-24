@@ -41,7 +41,7 @@ function Layout() {
   return (
     <main className="font-poopins text-neutral-800">
       <NavBar cartItems={cartItems} setCartItems={setCartItems} />
-      <Outlet context={[products, loading, error, addItemsToCart]} />
+      <Outlet context={{ products, loading, error, addItemsToCart }} />
     </main>
   );
 }
