@@ -18,10 +18,10 @@ function Layout() {
 
       if (isItemInCart) {
         return prevItems.map((item) =>
-          item.id === id ? { ...item, total: item.total + 1 } : item
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
         );
       } else {
-        return [...prevItems, { ...product, total: 1 }];
+        return [...prevItems, { ...product, quantity: 1 }];
       }
     });
   }

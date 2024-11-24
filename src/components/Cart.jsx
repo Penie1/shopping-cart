@@ -5,8 +5,8 @@ import shortProductName from "../utilities/shortProductName";
 function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
   const cartItemCount = cartItems.length;
 
-  const subTotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.total,
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
     0
   );
   function removeItemFromCart(id) {
@@ -16,15 +16,17 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
   function handleIncrement(currentItemId) {
     setCartItems((prevItems) => {
       return prevItems.map((item) =>
-        item.id === currentItemId ? { ...item, total: item.total + 1 } : item
+        item.id === currentItemId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       );
     });
   }
   function handleDecrement(currentItemId) {
     setCartItems((prevItems) => {
       return prevItems.map((item) =>
-        item.id === currentItemId && item.total > 1
-          ? { ...item, total: item.total - 1 }
+        item.id === currentItemId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
           : item
       );
     });
@@ -49,7 +51,7 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
               </h1>
             ) : (
               <ul className="flex flex-col gap-3 py-2 max-h-72 overflow-scroll scrollbar w-full">
-                {cartItems.map(({ id, title, image, total }) => (
+                {cartItems.map(({ id, title, image, quantity }) => (
                   <li className="border py-4 px-3 w-full" key={id}>
                     <div className=" flex gap-10 items-center justify-between text-sm">
                       <img
@@ -69,7 +71,7 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
                           >
                             +
                           </button>
-                          <span>{total}</span>
+                          <span>{quantity}</span>
                           <button
                             className="border border-neutral-500 px-2 rounded-sm"
                             onClick={() => handleDecrement(id)}
@@ -95,7 +97,7 @@ function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
             <div className="flex flex-col gap-2 text-center font-medium">
               <p className="flex justify-between py-3 px-5 bg-neutral-100 ">
                 <span>SubTotal:</span>
-                <span>{subTotal}$</span>
+                <span>{totalPrice}$</span>
               </p>
 
               <div className="flex flex-col basis-full gap-2 mb-2">
