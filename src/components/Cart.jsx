@@ -1,14 +1,18 @@
 import { X } from "lucide-react";
 import PropTypes from "prop-types";
 import shortProductName from "../utilities/shortProductName";
+import { useMemo } from "react";
 
 function Cart({ isCartClicked, cartItems, setCartItems, handleCartClick }) {
   const cartItemCount = cartItems.length;
 
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  }, [cartItems]);
+
   function removeItemFromCart(id) {
     const remainingCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(remainingCartItems);
