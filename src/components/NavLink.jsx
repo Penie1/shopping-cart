@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function NavLink({ link, setIsClicked, isClicked }) {
+function NavLink({ link, setIsNavOpened, isNavOpened }) {
   const routerLink = link.split(" ")[0];
 
   return (
@@ -9,7 +9,7 @@ function NavLink({ link, setIsClicked, isClicked }) {
       <Link
         to={`/${routerLink}`}
         onClick={() => {
-          setIsClicked(!isClicked);
+          setIsNavOpened(!isNavOpened);
         }}
       >
         {link}
@@ -21,6 +21,6 @@ export default NavLink;
 
 NavLink.propTypes = {
   link: PropTypes.string.isRequired,
-  setIsClicked: PropTypes.func.isRequired,
-  isClicked: PropTypes.bool.isRequired,
+  setIsNavOpened: PropTypes.func.isRequired,
+  isNavOpened: PropTypes.bool.isRequired,
 };

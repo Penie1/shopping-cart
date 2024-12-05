@@ -6,14 +6,14 @@ import Cart from "./Cart";
 import NavLink from "./NavLink";
 
 function NavBar({ cartItems, setCartItems }) {
-  const [isClicked, setIsClicked] = useState(false);
-  const [isCartClicked, setIsCartClicked] = useState(false);
+  const [isNavOpened, setIsNavOpened] = useState(false);
+  const [isCartOpened, setIsCartOpened] = useState(false);
 
   function handleMenuClick() {
-    setIsClicked((prevBoolen) => !prevBoolen);
+    setIsNavOpened((prevBoolen) => !prevBoolen);
   }
-  function handleCartClick() {
-    setIsCartClicked((prevBoolen) => !prevBoolen);
+  function handleCartBtn() {
+    setIsCartOpened((prevBoolen) => !prevBoolen);
   }
 
   return (
@@ -26,45 +26,45 @@ function NavBar({ cartItems, setCartItems }) {
       </Link>
       <ul
         className={`z-10 flex  sm:gap-9  sm:flex-row sm:static flex-col absolute top-[4.9rem] right-0 sm:bg-inherit bg-neutral-700 sm:text-inherit text-neutral-100 sm:w-max w-full sm:p-0 px-3  sm:h-fit h-[calc(100svh-78px)] text-center font-medium  uppercase tracking-wider ${
-          !isClicked && "sm:flex hidden "
+          !isNavOpened && "sm:flex hidden "
         } `}
       >
         <NavLink
           link="home"
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
+          setIsNavOpened={setIsNavOpened}
+          isNavOpened={isNavOpened}
         />
         <NavLink
           link="shop"
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
+          setIsNavOpened={setIsNavOpened}
+          isNavOpened={isNavOpened}
         />
         <NavLink
           link="about us"
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
+          setIsNavOpened={setIsNavOpened}
+          isNavOpened={isNavOpened}
         />
         <NavLink
           link="contact us"
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
+          setIsNavOpened={setIsNavOpened}
+          isNavOpened={isNavOpened}
         />
       </ul>
       <div className="flex gap-10 relative">
-        <button onClick={handleCartClick}>
+        <button onClick={handleCartBtn}>
           <ShoppingCart size={20} />
           <div className=" text-center font-bold absolute bottom-3 left-5 w-5 h-5 pb-1  rounded-full bg-rose-500 text-neutral-50 text-xs leading-5">
             <span>{cartItems.length}</span>
           </div>
         </button>
         <button className="sm:hidden" onClick={handleMenuClick}>
-          {!isClicked ? <Menu /> : <X />}
+          {!isNavOpened ? <Menu /> : <X />}
         </button>
       </div>
       <Cart
-        isCartClicked={isCartClicked}
+        isCartOpened={isCartOpened}
         cartItems={cartItems}
-        handleCartClick={handleCartClick}
+        handleCartBtn={handleCartBtn}
         setCartItems={setCartItems}
       />
     </nav>
